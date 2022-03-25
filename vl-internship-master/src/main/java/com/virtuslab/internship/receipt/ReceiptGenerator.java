@@ -1,6 +1,8 @@
 package com.virtuslab.internship.receipt;
 
 import com.virtuslab.internship.basket.Basket;
+import com.virtuslab.internship.discount.FifteenPercentDiscount;
+import com.virtuslab.internship.discount.TenPercentDiscount;
 import com.virtuslab.internship.product.Product;
 
 import java.util.ArrayList;
@@ -22,6 +24,14 @@ public class ReceiptGenerator {
         for (Map.Entry<Product, Integer> productInfo : productInfoHashMap.entrySet()) {
             receiptEntries.add(new ReceiptEntry(productInfo.getKey(), productInfo.getValue()));
         }
-        return new Receipt(receiptEntries, discounts);
+
+        Receipt receipt = new Receipt(receiptEntries, discounts);
+
+        //        discounts handling
+        var discount1 = new FifteenPercentDiscount();
+        var discount2 = new TenPercentDiscount();
+
+        return discount2.apply(discount1.apply(receipt));
     }
+
 }

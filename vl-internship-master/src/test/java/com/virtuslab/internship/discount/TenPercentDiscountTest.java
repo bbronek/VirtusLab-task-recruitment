@@ -73,7 +73,10 @@ class TenPercentDiscountTest {
         var receipt = new Receipt(receiptEntries, discounts);
         var discount1 = new FifteenPercentDiscount();
         var discount2 = new TenPercentDiscount();
-        var expectedTotalPrice = cheese.price().add(steak.price()).add(cereals.price().multiply(BigDecimal.valueOf(9))).multiply(BigDecimal.valueOf(0.765));
+        var expectedTotalPrice = cheese.price().add(steak.price())
+                                                          .add(cereals.price()
+                                                                  .multiply(BigDecimal.valueOf(9)))
+                                                          .multiply(BigDecimal.valueOf(0.765));
 
         // When
         var receiptAfterDiscount1 = discount1.apply(receipt);

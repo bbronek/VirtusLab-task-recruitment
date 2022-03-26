@@ -75,7 +75,7 @@ class ReceiptApiTest {
 
     @Test
     void shouldReturnProperJsonData() {
-        var cart = generateBasket();
+        Basket cart = generateBasket();
         var receiptGenerator = new ReceiptGenerator();
         var receipt = receiptGenerator.generate(cart);
 

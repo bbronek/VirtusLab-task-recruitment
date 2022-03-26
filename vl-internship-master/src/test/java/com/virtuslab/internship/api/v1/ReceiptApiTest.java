@@ -27,32 +27,32 @@ class ReceiptApiTest {
         Gson gson = new Gson();
         Type gsonType = new TypeToken<Basket>(){}.getType();
 
-        given().
-            port(randomServerPort).
-                header("Content-Type", "application/json").
-                contentType(ContentType.JSON).
-                accept(ContentType.JSON).
-                body(gson.toJson(cart, gsonType)).
-            when().
-                post("/api/v1/basket").
-            then().
-                statusCode(201);
+        given()
+            .port(randomServerPort)
+                    .header("Content-Type", "application/json")
+                    .contentType(ContentType.JSON)
+                    .accept(ContentType.JSON)
+                    .body(gson.toJson(cart, gsonType))
+                .when()
+                    .post("/api/v1/basket")
+                .then()
+                    .statusCode(201);
     }
 
     @Test
     void shouldReturn400StatusCodeAfterSendingWrongData() {
         String wrongData = "{wrongData: wrongData}";
 
-        given().
-                port(randomServerPort).
-                    header("Content-Type", "application/json").
-                    contentType(ContentType.JSON).
-                    accept(ContentType.JSON).
-                    body(wrongData).
-                when().
-                    post("/api/v1/basket").
-                then().
-                    statusCode(400);
+        given()
+                .port(randomServerPort)
+                    .header("Content-Type", "application/json")
+                    .contentType(ContentType.JSON)
+                    .accept(ContentType.JSON)
+                    .body(wrongData)
+                .when()
+                        .post("/api/v1/basket")
+                .then()
+                        .statusCode(400);
     }
 
     @Test
@@ -62,15 +62,15 @@ class ReceiptApiTest {
         Type gsonType = new TypeToken<Basket>(){}.getType();
 
         given().
-            port(randomServerPort).
-                header("Content-Type", "application/json").
-                contentType(ContentType.JSON).
-                accept(ContentType.JSON).
-                body(gson.toJson(cart, gsonType)).
-            when().
-                get("/api/v1/basket").
-            then().
-                statusCode(405);
+            port(randomServerPort)
+                .header("Content-Type", "application/json")
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(gson.toJson(cart, gsonType))
+           .when()
+                .get("/api/v1/basket")
+            .then()
+                .statusCode(405);
     }
 
     @Test
@@ -83,18 +83,18 @@ class ReceiptApiTest {
         Type gsonCartType = new TypeToken<Basket>(){}.getType();
         Type gsonReceiptType = new TypeToken<Receipt>(){}.getType();
 
-        String responseJSON = given().
-                        port(randomServerPort).
-                            header("Content-Type", "application/json").
-                            contentType(ContentType.JSON).
-                            accept(ContentType.JSON).
-                            body(gson.toJson(cart, gsonCartType)).
-                        when().
-                            post("/api/v1/basket").
-                        then().
-                            statusCode(201).
-                        extract().
-                        asString();
+        String responseJSON = given()
+                        .port(randomServerPort)
+                            .header("Content-Type", "application/json")
+                            .contentType(ContentType.JSON)
+                            .accept(ContentType.JSON)
+                            .body(gson.toJson(cart, gsonCartType))
+                        .when()
+                            .post("/api/v1/basket")
+                        .then()
+                            .statusCode(201)
+                        .extract()
+                        .asString();
 
         assertEquals(responseJSON, gson.toJson(receipt, gsonReceiptType));
     }

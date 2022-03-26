@@ -49,10 +49,10 @@ class FifteenPercentDiscountTest {
 
         var receipt = new Receipt(receiptEntries, discounts);
         var discount = new FifteenPercentDiscount();
-        var expectedTotalPrice = bread.price().
-                multiply(BigDecimal.valueOf(2)).
-                add(cereals.price().multiply(BigDecimal.valueOf(2))).
-                multiply(BigDecimal.valueOf(0.85));
+        var expectedTotalPrice = bread.price()
+                .multiply(BigDecimal.valueOf(2))
+                .add(cereals.price().multiply(BigDecimal.valueOf(2)))
+                .multiply(BigDecimal.valueOf(0.85));
 
         // When
         var receiptAfterDiscount = discount.apply(receipt);
@@ -107,11 +107,11 @@ class FifteenPercentDiscountTest {
         var receipt = new Receipt(receiptEntries, discounts);
         var discount1 = new FifteenPercentDiscount();
         var discount2 = new TenPercentDiscount();
-        var expectedTotalPrice = onion.price().
-                multiply(BigDecimal.valueOf(2)).
-                add(bread.price().
-                    multiply(BigDecimal.valueOf(4))).
-                multiply(BigDecimal.valueOf(0.85));
+        var expectedTotalPrice = onion.price()
+                .multiply(BigDecimal.valueOf(2))
+                .add(bread.price()
+                        .multiply(BigDecimal.valueOf(4)))
+                .multiply(BigDecimal.valueOf(0.85));
 
         // When
         var receiptAfterDiscount1 = discount1.apply(receipt);
@@ -159,10 +159,10 @@ class FifteenPercentDiscountTest {
         var receipt = new Receipt(receiptEntries, discounts);
         var discount1 = new FifteenPercentDiscount();
         var discount2 = new TenPercentDiscount();
-        var expectedTotalPrice = bread.price().
-                multiply(BigDecimal.valueOf(2)).
-                add(steak.price().multiply(BigDecimal.valueOf(1))).
-                multiply(BigDecimal.valueOf(0.9));
+        var expectedTotalPrice = bread.price()
+                .multiply(BigDecimal.valueOf(2))
+                .add(steak.price().multiply(BigDecimal.valueOf(1)))
+                .multiply(BigDecimal.valueOf(0.9));
 
         // When
         var receiptAfterDiscount1 = discount1.apply(receipt);
